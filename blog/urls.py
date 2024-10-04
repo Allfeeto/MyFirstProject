@@ -17,12 +17,17 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, re_path
 from django.urls.conf import include
-
+from .views import *
 from blog import views
 
 urlpatterns = [
     re_path(r'$', views.home, name='home'),
     re_path(r'about/$', views.about, name='about'),
     re_path(r'article/(?P<article_id>\d+)/$', views.show_article, name='article'),
+    path('login', loginPage, name='login'),
+    path('register', registerPage, name='register'),
+    path('me', me, name='me'),
+    path('logout', doLogout, name='logout')
 ]
 # python manage.py runserver
+

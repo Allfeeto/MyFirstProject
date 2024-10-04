@@ -21,6 +21,6 @@ from django.urls.conf import include
 urlpatterns = [
     re_path(r'blog/', include('blog.urls')),
     re_path(r'admin/', admin.site.urls),
-    path('', include('main.urls'))
+
 ]
 # python manage.py runserver

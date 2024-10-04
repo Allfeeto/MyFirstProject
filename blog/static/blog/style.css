@@ -1,3 +1,59 @@
 .main-content{
     margin-top: 80px;
 }
+/* Более специфичные селекторы */
+body {
+    background-color: #f0f8ff;
+}
+
+.navbar.navbar-inverse {
+    background-color: #333;
+    border-color: #080808;
+}
+
+.navbar.navbar-inverse .navbar-nav > li > a {
+    color: #ffffff;
+}
+
+.navbar.navbar-inverse .navbar-nav > li > a:hover {
+    color: #ffffff;
+}
+.navbar-inverse .navbar-nav>li>a:hover,.navbar-inverse .navbar-nav>li>a:focus {
+    color: #ffffff;
+    background-color: #175984
+}
+
+.navbar-inverse .navbar-nav>.active>a,.navbar-inverse .navbar-nav>.active>a:hover,.navbar-inverse .navbar-nav>.active>a:focus {
+    color: #ffffff;
+    background-color: #3280ac;
+}
+a {
+    color: #4087d5;
+    text-decoration: none
+}
+
+a:hover,a:focus {
+    color: #1c3895;
+    text-decoration: underline
+}
+
+.navbar-inverse .navbar-brand {
+    color: White !important; /* Цвет текста кнопки BLOG */
+}
+
+.navbar-inverse .navbar-brand:hover {
+    color: Black !important; /* Цвет при наведении на кнопку BLOG */
+    background-color: #175984 !important; /* Цвет при наведении */
+}
+pre {
+    background-color: #f0f8ff;
+}
+/* Стили для основного контента */
+.main-content {
+    background-color: white;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 30px;
+}
+

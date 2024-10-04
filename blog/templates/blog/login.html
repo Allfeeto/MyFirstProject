@@ -1,0 +1,49 @@
+{% extends 'blog/base.html' %}
+
+{% block title %}Вход{% endblock %}
+{% block content %}
+<div class="container-fluid d-flex justify-content-center align-items-center vh-100">
+    <div class="col-lg-4 col-md-6 col-sm-8 shadow-lg p-5 bg-light rounded">
+        <div class="text-center mb-4">
+            <h3 class="text-primary">Вход в аккаунт</h3>
+            <p class="text-muted">Введите свои учетные данные для входа</p>
+        </div>
+        <form action="{% url 'login' %}" method="post">
+            {% csrf_token %}
+            {% if form.non_field_errors %}
+                <div class="alert alert-danger" role="alert">
+                    {% for error in form.non_field_errors %}
+                        {{ error }}
+                    {% endfor %}
+                </div>
+            {% endif %}
+            <div class="form-group mb-3">
+                <label for="username" class="form-label">Имя пользователя</label>
+                <div class="input-group">
+                    <span class="input-group-text bg-primary text-white">
+                        <i class="bi bi-person-fill"></i>
+                    </span>
+                    <input type="text" id="username" name="username" class="form-control" placeholder="Имя пользователя" required>
+                </div>
+            </div>
+            <div class="form-group mb-3">
+                <label for="password" class="form-label">Пароль</label>
+                <div class="input-group">
+                    <span class="input-group-text bg-primary text-white">
+                        <i class="bi bi-key-fill"></i>
+                    </span>
+                    <input type="password" id="password" name="password" class="form-control" placeholder="Пароль" required>
+                </div>
+            </div>
+            <div class="d-grid">
+                <button type="submit" class="btn btn-primary">Войти</button>
+            </div>
+            <p class="text-center mt-3">
+                Нет аккаунта? <a href="{% url 'register' %}" class="text-primary">Зарегистрироваться</a>
+            </p>
+        </form>
+    </div>
+</div>
+{% endblock %}
+
+
