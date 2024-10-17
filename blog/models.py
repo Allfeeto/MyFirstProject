@@ -17,3 +17,16 @@ class Article(models.Model):
             return self.text[:SHORT_TEXT_LEN] + '...'
         else:
             return self.text
+
+
+class Comment(models.Model):
+    article = models.ForeignKey(Article, on_delete=models.CASCADE)
+    name = models.CharField(max_length=100)
+    comment = models.TextField(max_length=400)
+    created_on = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        ordering = ['created_on']
+
+    def __str__(self):
+        return self.comment[:60]

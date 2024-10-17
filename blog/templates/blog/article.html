@@ -1,12 +1,48 @@
 {% extends 'blog/base.html' %}
+{% load form_tags %}
+
 
 {% block title %}
-{{ article.title }}
+    {{ article.title }}
 {% endblock %}
 
 {% block content %}
+    <div class="container">
+        <h1>{{ article.title }}</h1>
+        <div class="mb-4">
+            <pre>{{ article.text }}</pre>
+        </div>
 
-<h1>{{ article.title }}</h1>
-<pre>{{ article.text }}</pre>
+        <br><br>
+        <h3>Комментарии</h3>
+        <hr><br>
 
+        {% for com in comment %}
+            <div class="card mb-3">
+                <div class="card-body">
+                    <h5 class="card-title">Пользователь: {{ com.name }}</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">Создано: {{ com.created_on|timesince }} назад</h6>
+                    <p class="card-text">{{ com.comment }}</p>
+                </div>
+            </div>
+        {% empty %}
+            <p>Пока нет комментариев.</p>
+        {% endfor %}
+
+        <hr>
+
+        <h4>Добавить комментарий</h4>
+        <form method="post" class="mt-4">
+            {% csrf_token %}
+            <div class="mb-3">
+                <label for="id_name" class="form-label">Имя:</label>
+                {{ form.name|add_class:"form-control" }}  <!-- Добавляем класс form-control для поля ввода имени -->
+            </div>
+            <div class="mb-3">
+                <label for="id_comment" class="form-label">Комментарий:</label>
+                {{ form.comment|add_class:"form-control" }}  <!-- Добавляем класс form-control для поля ввода комментария -->
+            </div>
+            <button type="submit" class="btn btn-primary">Добавить</button>
+        </form>
+    </div>
 {% endblock %}

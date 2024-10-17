@@ -5,6 +5,9 @@ from django.core.validators import RegexValidator
 from django.forms import PasswordInput, ModelForm
 from django.core.validators import validate_email
 
+from blog.models import Comment
+
+
 # форма авторизации
 class LoginForm(forms.Form):
     username = forms.CharField(required=True, label='Username')
@@ -52,3 +55,8 @@ class RegisterForm(ModelForm):
             raise forms.ValidationError({'email': "Email не является валидным адресом"})
 
         return cleaned_data
+
+class CommentForm(ModelForm):
+    class Meta:
+        model = Comment
+        fields = ['name', 'comment']
