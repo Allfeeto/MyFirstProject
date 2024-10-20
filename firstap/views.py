@@ -9,19 +9,25 @@ def index(request):
         userform = UserForm(request.POST, request.FILES)
         if userform.is_valid():
             # Если форма валидна, извлекаем данные
-            name = userform.cleaned_data['name']
-            age = userform.cleaned_data['age']
-            email = userform.cleaned_data['email']
-            phone = userform.cleaned_data['RF']
-
-            # Здесь можно обработать файлы
-            uploaded_file = request.FILES.get('file')
-            uploaded_image = request.FILES.get('image')
+            cleaned_data = userform.cleaned_data
 
             # Пример вывода данных
             output = f"""
                 <h2>Пользователь</h2>
-                <h3>Имя: {name} <br> Возраст: {age} <br> Электронная почта: {email} <br> Телефон: {phone}</h3>
+                <h3>
+                    Имя: {cleaned_data['name']} <br>
+                    Возраст: {cleaned_data['age']} <br>
+                    Электронная почта: {cleaned_data['email']} <br>
+                    Телефон: {cleaned_data['RF']} <br>
+                    Положить в корзину: {'Да' if cleaned_data['basket'] else 'Нет'} <br>
+                    Зачтете лабораторную: {'Да' if cleaned_data['vyb'] else 'Нет'} <br>
+                    Ссылка на соцсети: {cleaned_data['url_text']} <br>
+                    Файл: {cleaned_data['file_path']} <br>
+                    Загруженный файл: {cleaned_data['file']}, Загруженное изображение: {cleaned_data['image']} <br>
+                    Дата: {cleaned_data['data_field']} <br>
+                    Целое число: {cleaned_data['integer_field']} <br>
+                    Выбор: {cleaned_data['choice_field']}
+                </h3>
             """
             return HttpResponse(output)
     else:
@@ -30,7 +36,6 @@ def index(request):
 
     # Рендерим шаблон и передаем форму
     return render(request, 'index.html', {'form': userform})
-
 
 def about(request):
     return HttpResponse("<h2>О сайте</h2>")
