@@ -19,6 +19,8 @@ from django.urls import path
 from django.urls import re_path
 from firstap import views
 
+
+
 urlpatterns = [
     re_path(r'^products/(?P<productid>\d+)/$', views.products),
     re_path(r'^products/$', views.products),
